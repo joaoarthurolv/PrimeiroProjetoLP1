@@ -1,0 +1,8 @@
+Felipe: 
+    - Depósito e saldo em conta própria ou em conta de terceiro
+
+João: 
+    - Acesso, criação e verificação de conta
+
+Vinícius: 
+    - Pagamentos e saques
