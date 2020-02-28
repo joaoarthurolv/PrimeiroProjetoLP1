@@ -14,7 +14,7 @@ typedef struct {
 
 void logar();
 
-int distinto(Conta contas, int qtdContas, int login);
+int distinto(Conta *contas, int qtdContas, int login);
 
 void criar(Conta *contas, int *qtdContas);
 

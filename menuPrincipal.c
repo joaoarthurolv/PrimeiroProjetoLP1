@@ -22,7 +22,21 @@ void verificar(Conta *contas, int qtdContas) {
     }
 }
 
-int distinto(Conta contas, int qtdContas, int login) {
+int buscarConta(Conta *contas, int qtdContas, int login) {
+    for (int i = 0; i < qtdContas; i++) {
+        if (contas[i].login == login) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int distinto(Conta *contas, int qtdContas, int login) {
+    for (int i = 0; i < qtdContas; i++) {
+        if (contas[i].login == login) {
+            return 0;
+        }
+    }
     return 1;
 }
 
@@ -44,6 +58,11 @@ void criar(Conta *contas, int *qtdContas) {
         printf("Digite um número de 5 dígitos para ser seu login:\n");
         scanf("%d", contas[*qtdContas - 1].login);
     }
+    while (!distinto(contas, *qtdContas, contas[*qtdContas - 1].login)) {
+        printf("Já existe um login com esse número.\n");
+        printf("Digite um número de 5 dígitos para ser seu login:\n");
+        scanf("%d", contas[*qtdContas - 1].login);
+    }
 
     printf("Digite um número de 5 dígitos para ser sua senha:\n");
     scanf("%d", contas[*qtdContas - 1].senha);
@@ -57,6 +76,29 @@ void criar(Conta *contas, int *qtdContas) {
     printf("Por favor retorne ao menu principal e insira seus dados para logar em sua conta.\n");
 }
 
+void depositar(Conta *contas, int qtdContas) {
+    int login, indice;
+    float valor;
+    printf("Digite o login da conta beneficiária:\n");
+    scanf("%d", &login);
+    while (distinto(contas, qtdContas, login)) {
+        printf("Essa conta beneficiária não existe.\n");
+        printf("Digite o login correto da conta beneficiária:\n");
+        scanf("%d", &login);
+    }
+    printf("Digite o valor a ser depositado:\n");
+    scanf("%f", &valor);
+    while (valor <= 0) {
+        printf("O valor depositado deve ser maior que zero.");
+        printf("Digite o valor correto a ser depositado:\n");
+        scanf("%f", &valor);
+    }
+    indice = buscarConta(contas, qtdContas, login);
+    if (indice != -1) {
+        contas[indice].saldo += valor;
+        printf("Depósito realizado com sucesso!\n");
+    }
+}
 
 void menuPrincipal(){
     Conta *contas;
