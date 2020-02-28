@@ -3,13 +3,24 @@
 #include <stdio.h>
 #include <string.h>
 
+/*
+OPERAÇÕES DE CONTA
+
+consultar saldo
+e saque
+o resto faz no menu principal mesmo
+porque não precisa de autenticação
+*/
+
 void saldo() {}
 
 void sacar() {}
 
-void depositar() {}
+void transferencia() {}
 
-void pagar() {}
+// void depositar() {}
+
+// void pagar() {}
 
 void menuConta(){
     Conta conta;
