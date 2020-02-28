@@ -52,11 +52,11 @@ void criar(Conta *contas, int *qtdContas) {
     
     contas[*qtdContas - 1].saldo = 0;
     printf("Digite um número de 5 dígitos para ser seu login:\n");
-    scanf("%d", contas[*qtdContas - 1].login);
+    scanf("%d", &contas[*qtdContas - 1].login);
     while (contas[*qtdContas - 1].login > 99999 || contas[*qtdContas - 1].login < 10000) {
         printf("O login da conta não pode ser menor que 10000 nem maior que 99999.\n");
         printf("Digite um número de 5 dígitos para ser seu login:\n");
-        scanf("%d", contas[*qtdContas - 1].login);
+        scanf("%d", &contas[*qtdContas - 1].login);
     }
     while (!distinto(contas, *qtdContas, contas[*qtdContas - 1].login)) {
         printf("Já existe um login com esse número.\n");
@@ -65,11 +65,11 @@ void criar(Conta *contas, int *qtdContas) {
     }
 
     printf("Digite um número de 5 dígitos para ser sua senha:\n");
-    scanf("%d", contas[*qtdContas - 1].senha);
+    scanf("%d", &contas[*qtdContas - 1].senha);
     while (contas[*qtdContas - 1].senha > 99999 || contas[*qtdContas - 1].senha < 10000) {
         printf("A senha não pode ser menor que 10000 nem maior que 99999.\n");
         printf("Digite um número de 5 dígitos para ser sua senha:\n");
-        scanf("%d", contas[*qtdContas - 1].senha);
+        scanf("%d", &contas[*qtdContas - 1].senha);
     }
     
     printf("Conta criada com sucesso!\n");

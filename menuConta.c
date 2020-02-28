@@ -16,6 +16,8 @@ void saldo() {}
 
 void sacar() {}
 
+void transferencia() {}
+
 // void depositar() {}
 
 // void pagar() {}
