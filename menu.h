@@ -14,7 +14,7 @@ typedef struct {
 
 void logar();
 
-void criar();
+void criar(Conta *contas, int *qtdContas, Conta *conta);
 
 void saldo();
 
