@@ -15,30 +15,41 @@ void verificar(Conta *contas, int qtdContas) {
     }
 }
 
-void criar(Conta *contas, int *qtdContas, Conta *conta) {
-    printf("Informe o login: ");
-    scanf("%s", conta -> login);
+void criar(Conta *contas, int *qtdContas) {
 
-    printf("Informe a senha: ");
-    scanf("%s", conta -> senha);
+    if (*qtdContas == 0) {
+        contas = malloc(sizeof(Conta));
+        *qtdContas++;
+    } else {
+        *qtdContas++;
+        contas = realloc(contas, *qtdContas * sizeof(Conta));
+    }
     
-    contas[*qtdContas] = *conta;
+    printf("Digite um número de 5 dígitos para ser seu login:\n");
+    scanf("%d", contas[*qtdContas - 1].login);
+    while (contas[*qtdContas - 1].login > 99999 || contas[*qtdContas - 1].login < 10000) {
+        printf("O login da conta não pode ser menor que 10000 nem maior que 99999.\n");
+        printf("Digite um número de 5 dígitos para ser seu login:\n");
+        scanf("%d", contas[*qtdContas - 1].login);
+    }
 
-    printf("\nConta criada com sucesso!\n");
-    (*qtdContas)++;
+    printf("Digite um número de 5 dígitos para ser sua senha:\n");
+    scanf("%d", contas[*qtdContas - 1].senha);
+    while (contas[*qtdContas - 1].senha > 99999 || contas[*qtdContas - 1].senha < 10000) {
+        printf("A senha não pode ser menor que 10000 nem maior que 99999.\n");
+        printf("Digite um número de 5 dígitos para ser sua senha:\n");
+        scanf("%d", contas[*qtdContas - 1].senha);
+    }
+    
+    printf("Conta criada com sucesso!\n");
+    printf("Por favor retorne ao menu principal e insira seus dados para logar em sua conta.\n");
 }
 
 
 void menuPrincipal(){
-    Conta conta;
     Conta *contas;
-    int *qtdContas;
     boolean logado = false;
     int operacao = -1, lista = 0;
-
-    qtdContas = (int*)malloc(20*sizeof(int));
-
-    contas = (Conta*)malloc((*qtdContas)*sizeof(Conta));
 
     while(operacao != 0){
         printf("+------------------------+\n");
@@ -60,7 +71,7 @@ void menuPrincipal(){
                 logar();
                 break;
             case 2:
-                criar(contas, qtdContas, &conta);
+                criar(contas, &lista);
                 break;
             case 3:
                 verificar(contas, *qtdContas);

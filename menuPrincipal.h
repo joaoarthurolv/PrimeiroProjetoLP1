@@ -7,14 +7,14 @@ typedef enum {
 } boolean;
 
 typedef struct {
-    char login[5];
-    char senha[5];
+    int login;
+    int senha;
     double saldo;
 } Conta;
 
 void logar();
 
-void criar(Conta *contas, int *qtdContas, Conta *conta);
+void criar(Conta *contas, int *qtdContas);
 
 void menuPrincipal();
 
