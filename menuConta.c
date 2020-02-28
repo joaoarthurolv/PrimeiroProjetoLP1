@@ -1,22 +1,7 @@
-#include "menu.h"
+#include "menuConta.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
-void logar() {}
-
-void criar(Conta *contas, int *qtdContas, Conta *conta) {
-    printf("Informe o login: ");
-    scanf("\n%s", conta -> login);
-
-    printf("informe a senha: ");
-    scanf("\n%s", conta -> senha);
-    
-    contas[*qtdContas] = *conta;
-
-    printf("\nConta criada com sucesso!\n");
-    (*qtdContas)++;
-}
 
 void saldo() {}
 
@@ -26,7 +11,7 @@ void depositar() {}
 
 void pagar() {}
 
-void menu(){
+void menuConta(){
     Conta conta;
     Conta *contas;
     int *qtdContas;
@@ -46,24 +31,16 @@ void menu(){
         printf("|    uma operação para   |\n");
         printf("|     ser realizada.     |\n");
         printf("+------------------------+\n");
-        printf("| 1 - Acessar conta      |\n");
-        printf("| 2 - Criar conta        |\n");
-        printf("| 3 - Depositar valor    |\n");
-        printf("| 4 - Realizar pagamento |\n");
+        printf("| 1 - Depositar valor    |\n");
+        printf("| 2 - Realizar pagamento |\n");
         printf("| 0 - Encerrar sessão    |\n");
         printf("+------------------------+\n");
         scanf("%d", &operacao);
         switch (operacao) {
             case 1:
-                logar();
-                break;
-            case 2:
-                criar(contas, qtdContas, &conta);
-                break;
-            case 3:
                 depositar();
                 break;
-            case 4:
+            case 2:
                 pagar();
                 break;
             default:

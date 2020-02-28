@@ -1,4 +1,4 @@
-#include "menu.h"
+#include "menuPrincipal.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -6,5 +6,5 @@
 
 int main(){
 
-    menu();
+    menuPrincipal();
 }

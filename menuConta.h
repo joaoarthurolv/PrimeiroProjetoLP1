@@ -1,5 +1,5 @@
-#ifndef MENU_H
-#define MENU_H
+#ifndef MENU_CONTA_H
+#define MENU_CONTA_H
 #include <stdio.h>
 
 typedef enum {
@@ -12,10 +12,6 @@ typedef struct {
     double saldo;
 } Conta;
 
-void logar();
-
-void criar(Conta *contas, int *qtdContas, Conta *conta);
-
 void saldo();
 
 void sacar();
@@ -24,6 +20,6 @@ void depositar();
 
 void pagar();
 
-void menu();
+void menuPrincipal();
 
 #endif
