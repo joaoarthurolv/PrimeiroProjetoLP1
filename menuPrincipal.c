@@ -3,23 +3,29 @@
 #include <stdio.h>
 #include <string.h>
 
-void logar() {}
-
-void verificar(Conta *contas, int qtdContas) {
-
-    // Não vejo necessidade de fazer essa função
-    // O usuário não precisa verificar as contas cadastradas
-    // Vou fazer uma função para evitar conflito na hora de criar
-    // novas contas. Para evitar repetição de logins.
-    // ass. Felipe Costa
-
+void logar(Conta *contas, int *qtdContas, Conta *conta) {
+    int logado = false;
     int i;
+    printf("Digite o seu login: ");
+    scanf("%d", &conta->login);
 
-    printf("Contas cadastradas no sistema:\n");
-    for(i = 0; i < qtdContas; i++){
-        printf("Nome: %s\n", contas[i].login);
-        printf("---------------------------\n");
+    printf("Digite o seu login: ");
+    scanf("%d", &conta->senha);
+
+    printf("%d\n", conta -> login);
+    printf("%d\n", conta -> senha);
+    printf("%d\n", *qtdContas);
+
+    while (logado == false){
+        for(i = 0; i < *qtdContas; i++){
+            if(conta -> login == contas[i].login &&
+               conta -> senha == contas[i].senha ){
+                logado = true;
+                printf("Logado\n");
+            }
+        }
     }
+    
 }
 
 int buscarConta(Conta *contas, int qtdContas, int login) {
@@ -41,13 +47,12 @@ int distinto(Conta *contas, int qtdContas, int login) {
 }
 
 void criar(Conta *contas, int *qtdContas) {
-
-    if (*qtdContas == 0) {
+    if ((*qtdContas) == 0) {
         contas = malloc(sizeof(Conta));
-        *qtdContas++;
+        (*qtdContas)++;
     } else {
-        *qtdContas++;
-        contas = realloc(contas, *qtdContas * sizeof(Conta));
+        (*qtdContas)++;
+        contas = realloc(contas, (*qtdContas) * sizeof(Conta));
     }
     
     contas[*qtdContas - 1].saldo = 0;
@@ -58,11 +63,6 @@ void criar(Conta *contas, int *qtdContas) {
         printf("Digite um número de 5 dígitos para ser seu login:\n");
         scanf("%d", &contas[*qtdContas - 1].login);
     }
-    while (!distinto(contas, *qtdContas, contas[*qtdContas - 1].login)) {
-        printf("Já existe um login com esse número.\n");
-        printf("Digite um número de 5 dígitos para ser seu login:\n");
-        scanf("%d", contas[*qtdContas - 1].login);
-    }
 
     printf("Digite um número de 5 dígitos para ser sua senha:\n");
     scanf("%d", &contas[*qtdContas - 1].senha);
@@ -71,7 +71,7 @@ void criar(Conta *contas, int *qtdContas) {
         printf("Digite um número de 5 dígitos para ser sua senha:\n");
         scanf("%d", &contas[*qtdContas - 1].senha);
     }
-    
+    printf("%d\n", *qtdContas);
     printf("Conta criada com sucesso!\n");
     printf("Por favor retorne ao menu principal e insira seus dados para logar em sua conta.\n");
 }
@@ -102,6 +102,7 @@ void depositar(Conta *contas, int qtdContas) {
 
 void menuPrincipal(){
     Conta *contas;
+    Conta conta;
     boolean logado = false;
     int operacao = -1, lista = 0;
 
@@ -116,19 +117,15 @@ void menuPrincipal(){
         printf("+------------------------+\n");
         printf("| 1 - Acessar conta      |\n");
         printf("| 2 - Criar conta        |\n");
-        printf("| 3 - Verificar contas   |\n");
         printf("| 0 - Encerrar sessão    |\n");
         printf("+------------------------+\n");
         scanf("%d", &operacao);
         switch (operacao) {
             case 1:
-                logar();
+                logar(contas, &lista, &conta);
                 break;
             case 2:
                 criar(contas, &lista);
-                break;
-            case 3:
-                verificar(contas, *qtdContas);
                 break;
             default:
                 printf("Código inválido. Por favor insira o código corretamente.\n");

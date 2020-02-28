@@ -12,14 +12,12 @@ typedef struct {
     double saldo;
 } Conta;
 
-void logar();
+void logar(Conta *contas, int *qtdContas, Conta *conta);
 
 int distinto(Conta *contas, int qtdContas, int login);
 
 void criar(Conta *contas, int *qtdContas);
 
 void menuPrincipal();
-
-void verificar();
 
 #endif

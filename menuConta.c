@@ -43,7 +43,9 @@ void menuConta(){
         printf("|     ser realizada.     |\n");
         printf("+------------------------+\n");
         printf("| 1 - Depositar valor    |\n");
-        printf("| 2 - Realizar pagamento |\n");
+        printf("| 2 - Realizar saque     |\n");
+        printf("| 3 - Verificar saldo    |\n");
+        printf("| 4 - Realizar pagamento |\n");
         printf("| 0 - Encerrar sessão    |\n");
         printf("+------------------------+\n");
         scanf("%d", &operacao);
@@ -52,6 +54,12 @@ void menuConta(){
                 depositar();
                 break;
             case 2:
+                sacar();
+                break;
+            case 3:
+                saldo();
+                break;
+            case 4:
                 pagar();
                 break;
             default:
