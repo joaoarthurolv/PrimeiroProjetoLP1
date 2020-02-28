@@ -7,11 +7,22 @@ typedef enum {
 } boolean;
 
 typedef struct {
-    char* login;
-    char* senha;
+    char login[4];
+    char senha[4];
     double saldo;
-
 } Conta;
+
+void logar();
+
+void criar();
+
+void saldo();
+
+void sacar();
+
+void depositar();
+
+void pagar();
 
 void menu();
 
