@@ -12,54 +12,52 @@ o resto faz no menu principal mesmo
 porque não precisa de autenticação
 */
 
-void saldo() {}
+void saldo(Conta *contaLogada) {
+    printf("Seu saldo atual é de: R$ %lf\n", contaLogada -> saldo);
+}
 
-void sacar() {}
+void sacar(Conta *contaLogada) {
+    double valorSaque;
+    
+    printf("Digite o valor do saque: ");
+    scanf("%lf", &valorSaque);
 
-void transferencia() {}
+    while(valorSaque > contaLogada->saldo){
+        printf("O valor do saque é maior que o seu saldo atual. Digite um valor menor!");
+        scanf("%lf", &valorSaque);
+    }
 
-// void depositar() {}
+    contaLogada->saldo = contaLogada->saldo - valorSaque;
+}
 
-// void pagar() {}
+void pagar() {}
 
-void menuConta(){
-    Conta conta;
-    Conta *contas;
-    int *qtdContas;
-    boolean logado = false;
-    int operacao = -1, lista = 0;
-
-    qtdContas = (int*)malloc(20*sizeof(int));
-
-    contas = (Conta*)malloc((*qtdContas)*sizeof(Conta));
+void menuConta(Conta contaLogada, Conta *contas, boolean logado, int lista) {
+    int operacao = -1;
 
     while(operacao != 0){
         printf("+------------------------+\n");
         printf("|    CAIXA ELETRÔNICO    |\n");
         printf("+------------------------+\n");
-        printf("|     Seja bem-vindo!    |\n");
+        printf("|     Conta: %d    |\n", contaLogada.login);
         printf("|    Por favor escolha   |\n");
         printf("|    uma operação para   |\n");
         printf("|     ser realizada.     |\n");
         printf("+------------------------+\n");
-        printf("| 1 - Depositar valor    |\n");
-        printf("| 2 - Realizar saque     |\n");
-        printf("| 3 - Verificar saldo    |\n");
-        printf("| 4 - Realizar pagamento |\n");
+        printf("| 1 - Realizar saque     |\n");
+        printf("| 2 - Verificar saldo    |\n");
+        printf("| 3 - Realizar pagamento |\n");
         printf("| 0 - Encerrar sessão    |\n");
         printf("+------------------------+\n");
         scanf("%d", &operacao);
         switch (operacao) {
             case 1:
-                depositar();
+                sacar(&contaLogada);
                 break;
             case 2:
-                sacar();
+                saldo(&contaLogada);
                 break;
             case 3:
-                saldo();
-                break;
-            case 4:
                 //pagar();
                 break;
             default:

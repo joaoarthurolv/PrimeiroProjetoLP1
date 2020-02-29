@@ -7,20 +7,20 @@ void logar(Conta *contas, int *qtdContas, Conta *conta) {
     
     int indice;
     printf("Digite o seu login:\n");
-    scanf("\n%d", &conta->login);
+    scanf("\n%d", (int*) conta->login);
     while (verificarDistinto(contas, *qtdContas, conta->login)) {
         printf("Essa conta não existe.\n");
         printf("Digite o login correto da conta:\n");
-        scanf("\n%d", &conta->login);
+        scanf("\n%d", (int*) conta->login);
     }
     indice = buscarConta(contas, *qtdContas, conta->login);
 
     printf("Digite a sua senha:\n");
-    scanf("\n%d", &conta->senha);
+    scanf("\n%d", (int*) conta->senha);
     while (conta->senha != contas[indice].senha) {
         printf("Senha incorreta.\n");
         printf("Digite a sua senha corretamente:\n");
-        scanf("\n%d", &conta->senha);
+        scanf("\n%d", (int*) conta->senha);
     }
 
     printf("%d\n", conta->login);

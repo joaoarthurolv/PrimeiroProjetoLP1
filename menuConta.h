@@ -7,15 +7,23 @@ typedef enum {
 } boolean;
 
 typedef struct {
-    char login[4];
-    char senha[4];
+    int login;
+    int senha;
     double saldo;
 } Conta;
 
 void saldo();
 
+/**
+ * Realiza um saque do usuário logado
+ * @param contaLogada Ponteiro de conta logada na aplicação  
+*/
 void sacar();
 
+/**
+ * Verifica o saldo do usuário logado
+ * @param contaLogada Ponteiro de conta logada na aplicação 
+*/
 void depositar();
 
 void pagar();
