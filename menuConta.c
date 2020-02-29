@@ -60,7 +60,7 @@ void menuConta(){
                 saldo();
                 break;
             case 4:
-                pagar();
+                //pagar();
                 break;
             default:
                 printf("Código inválido. Por favor insira o código corretamente.\n");

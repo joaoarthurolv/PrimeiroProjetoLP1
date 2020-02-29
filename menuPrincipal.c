@@ -6,14 +6,14 @@
 void logar(Conta *contas, int *qtdContas, Conta *conta) {
     int logado = false;
     int i;
-    printf("Digite o seu login: ");
-    scanf("%d", &conta->login);
+    printf("Digite o seu login:\n");
+    scanf("\n%d", &conta->login);
 
-    printf("Digite o seu login: ");
-    scanf("%d", &conta->senha);
+    printf("Digite a sua senha:\n");
+    scanf("\n%d", &conta->senha);
 
-    printf("%d\n", conta -> login);
-    printf("%d\n", conta -> senha);
+    printf("%d\n", conta->login);
+    printf("%d\n", conta->senha);
     printf("%d\n", *qtdContas);
 
     while (logado == false){
@@ -37,7 +37,7 @@ int buscarConta(Conta *contas, int qtdContas, int login) {
     return -1;
 }
 
-int distinto(Conta *contas, int qtdContas, int login) {
+int verificarDistinto(Conta *contas, int qtdContas, int login) {
     for (int i = 0; i < qtdContas; i++) {
         if (contas[i].login == login) {
             return 0;
@@ -81,7 +81,7 @@ void depositar(Conta *contas, int qtdContas) {
     float valor;
     printf("Digite o login da conta beneficiária:\n");
     scanf("%d", &login);
-    while (distinto(contas, qtdContas, login)) {
+    while (verificarDistinto(contas, qtdContas, login)) {
         printf("Essa conta beneficiária não existe.\n");
         printf("Digite o login correto da conta beneficiária:\n");
         scanf("%d", &login);
@@ -100,8 +100,8 @@ void depositar(Conta *contas, int qtdContas) {
     }
 }
 
-void menuPrincipal(){
-    Conta *contas;
+void menuPrincipal() {
+    Conta *contas = NULL;
     Conta conta;
     boolean logado = false;
     int operacao = -1, lista = 0;

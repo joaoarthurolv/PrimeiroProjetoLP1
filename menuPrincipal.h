@@ -14,9 +14,11 @@ typedef struct {
 
 void logar(Conta *contas, int *qtdContas, Conta *conta);
 
-int distinto(Conta *contas, int qtdContas, int login);
+int verificarDistinto(Conta *contas, int qtdContas, int login);
 
 void criar(Conta *contas, int *qtdContas);
+
+void depositar(Conta *contas, int qtdContas);
 
 void menuPrincipal();
 
