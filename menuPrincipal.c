@@ -4,27 +4,30 @@
 #include <string.h>
 
 void logar(Conta *contas, int *qtdContas, Conta *conta) {
-    int logado = false;
-    int i;
+    
+    int indice;
     printf("Digite o seu login:\n");
     scanf("\n%d", &conta->login);
+    while (verificarDistinto(contas, *qtdContas, conta->login)) {
+        printf("Essa conta não existe.\n");
+        printf("Digite o login correto da conta:\n");
+        scanf("\n%d", &conta->login);
+    }
+    indice = buscarConta(contas, *qtdContas, conta->login);
 
     printf("Digite a sua senha:\n");
     scanf("\n%d", &conta->senha);
+    while (conta->senha != contas[indice].senha) {
+        printf("Senha incorreta.\n");
+        printf("Digite a sua senha corretamente:\n");
+        scanf("\n%d", &conta->senha);
+    }
 
     printf("%d\n", conta->login);
     printf("%d\n", conta->senha);
     printf("%d\n", *qtdContas);
 
-    while (logado == false){
-        for(i = 0; i < *qtdContas; i++){
-            if(conta -> login == contas[i].login &&
-               conta -> senha == contas[i].senha ){
-                logado = true;
-                printf("Logado\n");
-            }
-        }
-    }
+    printf("Usuário logado.\n");
     
 }
 
@@ -102,7 +105,7 @@ void depositar(Conta *contas, int qtdContas) {
 
 void menuPrincipal() {
     Conta *contas = NULL;
-    Conta conta;
+    Conta contaLogada;
     boolean logado = false;
     int operacao = -1, lista = 0;
 
@@ -122,7 +125,7 @@ void menuPrincipal() {
         scanf("%d", &operacao);
         switch (operacao) {
             case 1:
-                logar(contas, &lista, &conta);
+                logar(contas, &lista, &contaLogada);
                 break;
             case 2:
                 criar(contas, &lista);
